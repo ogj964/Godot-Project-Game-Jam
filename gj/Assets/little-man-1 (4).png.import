@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1d4cueaijlt8"
-path="res://.godot/imported/New Piskel (6).png-0b1ff741bd2272172bc25fe17d22adde.ctex"
+uid="uid://ykds4irtqe34"
+path="res://.godot/imported/little-man-1 (4).png-0cdebfdcc8c7e11ba1eb3e1716c3535d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://New Piskel (6).png"
-dest_files=["res://.godot/imported/New Piskel (6).png-0b1ff741bd2272172bc25fe17d22adde.ctex"]
+source_file="res://Assets/little-man-1 (4).png"
+dest_files=["res://.godot/imported/little-man-1 (4).png-0cdebfdcc8c7e11ba1eb3e1716c3535d.ctex"]
 
 [params]
 

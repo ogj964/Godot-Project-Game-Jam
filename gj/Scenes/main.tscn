@@ -1,0 +1,135 @@
+[gd_scene load_steps=15 format=3 uid="uid://djj7fpinalfva"]
+
+[ext_resource type="Texture2D" uid="uid://cngq3u2hgpym4" path="res://Assets/New Piskel (5).png" id="1_344ge"]
+[ext_resource type="Texture2D" uid="uid://mg2dlkyo2vvd" path="res://Assets/New Piskel (2).png" id="2_ynf5e"]
+[ext_resource type="Texture2D" uid="uid://d1d4cueaijlt8" path="res://Assets/New Piskel (6).png" id="3_hptm8"]
+[ext_resource type="Texture2D" uid="uid://c1aqbs8clavdd" path="res://Assets/New Piskel (4).png" id="4_d1ilt"]
+[ext_resource type="PackedScene" uid="uid://cj8y3ptmdwm2g" path="res://Scenes/player.tscn" id="5_6iyac"]
+[ext_resource type="Texture2D" uid="uid://cm0kcu4oojbyn" path="res://Assets/New Piskel.png" id="6_fdnlq"]
+[ext_resource type="PackedScene" uid="uid://dnkw5u5jt1e5" path="res://Scenes/enemy.tscn" id="7_jkdf5"]
+[ext_resource type="Script" uid="uid://cim7evnnblx6p" path="res://Scripts/fall_area.gd" id="8_wsu2k"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vw27"]
+texture = ExtResource("1_344ge")
+0:0/size_in_atlas = Vector2i(4, 2)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kek77"]
+texture = ExtResource("2_ynf5e")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.011438, -16.04195, 16.013151, -15.980903, 15.591381, 16.151524, -15.979908, 15.922527)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4c57u"]
+texture = ExtResource("3_hptm8")
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16.011438, -16.04195, 6.6514816, -15.998749, 15.900888, -7.4282255, 15.692831, 8.422587, 4.577569, 16.071636, -15.979908, 15.922527)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_efxa6"]
+texture = ExtResource("4_d1ilt")
+0:0/size_in_atlas = Vector2i(37, 25)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dg77c"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_5vw27")
+sources/2 = SubResource("TileSetAtlasSource_kek77")
+sources/3 = SubResource("TileSetAtlasSource_4c57u")
+sources/4 = SubResource("TileSetAtlasSource_efxa6")
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kek77"]
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_dg77c")
+format = 2
+layer_0/name = "Sky"
+layer_0/tile_data = PackedInt32Array(-786433, 4, 0, -786470, 4, 0, -786507, 4, 0, -786544, 4, 0, -786581, 4, 0, -851932, 4, 0, -851895, 4, 0, -851858, 4, 0, -851821, 4, 0, 851819, 4, 536870912, 851856, 4, 536870912, 851893, 4, 536870912, 851930, 4, 536870912, 851967, 4, 536870912, 786468, 4, 536870912, 786505, 4, 536870912, 786542, 4, 536870912, 786579, 4, 536870912, -2490221, 4, 536870912, -2490258, 4, 536870912, -2490295, 4, 536870912, -2490332, 4, 536870912, -2424833, 4, 536870912, -2424870, 4, 536870912, -2424907, 4, 536870912, -2424944, 4, 536870912, -2424981, 4, 536870912, 2490219, 4, 0, 2490256, 4, 0, 2490293, 4, 0, 2490330, 4, 0, 2490367, 4, 0, 2424868, 4, 0, 2424905, 4, 0, 2424942, 4, 0, 2424979, 4, 0, -589900, 2, 0)
+layer_1/name = "Clouds"
+layer_2/name = "Floor"
+layer_2/tile_data = PackedInt32Array(65405, 2, 0, 65407, 2, 0, 65409, 2, 0, 65411, 2, 0, 65413, 2, 0, 65415, 2, 0, 65417, 2, 0, 65419, 2, 0, 65421, 2, 0, 65423, 2, 0, 65425, 2, 0, 65427, 2, 0, 65429, 2, 0, 65403, 2, 0, 65401, 2, 0, 65399, 2, 0, 65397, 2, 0, 65395, 2, 0, 65393, 2, 0, 65391, 3, 268435456, 65431, 2, 0, 65433, 2, 0, 65435, 2, 0, 65437, 2, 0, 65439, 2, 0, 65441, 2, 0, 65443, 2, 0, 65445, 2, 0, 65447, 2, 0, 65449, 2, 0, 65451, 2, 0, 65453, 2, 0, 65455, 2, 0, 65457, 2, 0, 65459, 2, 0, 65461, 2, 0, 65463, 2, 0, 65465, 2, 0, 65467, 2, 0, 65469, 2, 0, 65471, 2, 0, 65473, 2, 0, 65475, 2, 0, 65477, 2, 0, 65479, 2, 0, 65481, 2, 0, 65483, 2, 0, 65485, 2, 0, 65487, 2, 0, 65489, 2, 0, 65491, 2, 0, 65493, 2, 0, 65495, 2, 0, 65497, 2, 0, 65499, 2, 0, 65501, 2, 0, 65503, 2, 0, 65505, 2, 0, 65507, 2, 0, 65509, 2, 0, 65511, 2, 0, 65513, 2, 0, 65515, 2, 0, 65517, 2, 0, 65519, 2, 0, 65521, 2, 0, 65523, 2, 0, 65525, 2, 0, 65527, 2, 0, 65529, 2, 0, 65531, 2, 0, 65533, 2, 0, 65535, 2, 0, 1, 2, 0, 3, 2, 0, 5, 2, 0, 7, 2, 0, 9, 2, 0, 11, 2, 0, 13, 2, 0, 15, 2, 0, 17, 2, 0, 19, 2, 0, 21, 2, 0, 23, 2, 0, 25, 2, 0, 27, 2, 0, 29, 2, 0, 31, 2, 0, 33, 2, 0, 35, 2, 0, 37, 2, 0, 39, 2, 0, 41, 2, 0, 43, 2, 0, 45, 2, 0, 47, 2, 0, 49, 2, 0, 51, 2, 0, 53, 2, 0, 55, 2, 0, 57, 2, 0, 59, 2, 0, 61, 2, 0, 63, 2, 0, 65, 2, 0, 67, 2, 0, 69, 2, 0, 71, 2, 0, 73, 2, 0, 75, 2, 0, 77, 2, 0, 80, 2, 0, 79, 2, 0, 81, 2, 0, 83, 2, 0, 85, 2, 0, 87, 2, 0, 89, 2, 0, 91, 2, 0, 93, 2, 0, 95, 2, 0, 97, 2, 0, 99, 2, 0, 101, 2, 0, 103, 2, 0, 105, 2, 0, 107, 2, 0, 109, 3, 0, -327810, 2, 0, -327808, 2, 0, -327806, 2, 0, -327804, 2, 0, -327802, 3, 0, -327812, 3, 268435456, -458870, 3, 268435456, -458868, 3, 0, -589934, 2, 0, -589932, 2, 0, -589930, 2, 0, -589928, 2, 0, -589926, 3, 0, -589936, 3, 268435456, -589922, 3, 268435456, -589920, 2, 0, -589918, 2, 0, -589916, 2, 0, -589914, 2, 0, -589912, 2, 0, -589910, 2, 0, -589908, 2, 0, -589906, 3, 0, -983148, 2, 0, -983150, 2, 0, -983146, 2, 0, -983144, 2, 0, -983152, 2, 0, -983154, 2, 0, -983142, 2, 0, -983140, 3, 0, -983156, 3, 268435456, -983135, 2, 0, -983137, 3, 268435456, -983133, 3, 0, -1245304, 2, 0, -1245302, 3, 0, -1245306, 2, 0, -1245308, 2, 0, -1245310, 2, 0, -1245312, 2, 0, -1245314, 2, 0, -1245316, 3, 268435456)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("5_6iyac")]
+position = Vector2(2, -224)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(5, 5)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Hearts" type="Panel" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_bottom = 28.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Hearts"]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 4.0
+offset_right = 81.0
+offset_bottom = 25.0
+alignment = 1
+
+[node name="Heart" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_fdnlq")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_fdnlq")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_fdnlq")
+expand_mode = 2
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("7_jkdf5")]
+position = Vector2(273, -32)
+
+[node name="Enemy9" parent="Enemies" instance=ExtResource("7_jkdf5")]
+position = Vector2(557, -29)
+
+[node name="Enemy6" parent="Enemies" instance=ExtResource("7_jkdf5")]
+position = Vector2(334, -25)
+
+[node name="Enemy8" parent="Enemies" instance=ExtResource("7_jkdf5")]
+position = Vector2(492, -43)
+
+[node name="Enemy10" parent="Enemies" instance=ExtResource("7_jkdf5")]
+position = Vector2(-676, -34)
+
+[node name="Enemy7" parent="Enemies" instance=ExtResource("7_jkdf5")]
+position = Vector2(-333, -21)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("7_jkdf5")]
+position = Vector2(-204, -27)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("7_jkdf5")]
+position = Vector2(-452, -24)
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("7_jkdf5")]
+position = Vector2(424, -21)
+
+[node name="Enemy5" parent="Enemies" instance=ExtResource("7_jkdf5")]
+position = Vector2(-593, -26)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 34)
+script = ExtResource("8_wsu2k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("WorldBoundaryShape2D_kek77")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

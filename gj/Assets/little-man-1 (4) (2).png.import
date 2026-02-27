@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcjodic0x3gog"
-path="res://.godot/imported/little-man-1 (3).png-942274278c59e23199a05d6fbff96b9e.ctex"
+uid="uid://djhlb3ddf8vkm"
+path="res://.godot/imported/little-man-1 (4) (2).png-a92191d405deaa26d16f0f56364647b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://little-man-1 (3).png"
-dest_files=["res://.godot/imported/little-man-1 (3).png-942274278c59e23199a05d6fbff96b9e.ctex"]
+source_file="res://Assets/little-man-1 (4) (2).png"
+dest_files=["res://.godot/imported/little-man-1 (4) (2).png-a92191d405deaa26d16f0f56364647b0.ctex"]
 
 [params]
 
