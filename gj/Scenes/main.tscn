@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://d1d4cueaijlt8" path="res://Assets/New Piskel (6).png" id="3_hptm8"]
 [ext_resource type="Texture2D" uid="uid://c1aqbs8clavdd" path="res://Assets/New Piskel (4).png" id="4_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://cj8y3ptmdwm2g" path="res://Scenes/player.tscn" id="5_6iyac"]
-[ext_resource type="Texture2D" uid="uid://cm0kcu4oojbyn" path="res://Assets/New Piskel.png" id="6_fdnlq"]
 [ext_resource type="PackedScene" uid="uid://dnkw5u5jt1e5" path="res://Scenes/enemy.tscn" id="7_jkdf5"]
 [ext_resource type="Script" uid="uid://cim7evnnblx6p" path="res://Scripts/fall_area.gd" id="8_wsu2k"]
+[ext_resource type="PackedScene" uid="uid://dh0qbtcdq2c7" path="res://music.tscn" id="9_ynf5e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5vw27"]
 texture = ExtResource("1_344ge")
@@ -57,42 +57,6 @@ position = Vector2(2, -224)
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(5, 5)
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Hearts" type="Panel" parent="UI"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -70.0
-offset_bottom = 28.0
-grow_horizontal = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Hearts"]
-layout_mode = 0
-offset_left = -11.0
-offset_top = 4.0
-offset_right = 81.0
-offset_bottom = 25.0
-alignment = 1
-
-[node name="Heart" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("6_fdnlq")
-expand_mode = 2
-
-[node name="Heart2" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("6_fdnlq")
-expand_mode = 2
-
-[node name="Heart3" type="TextureRect" parent="UI/Hearts/HBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-texture = ExtResource("6_fdnlq")
-expand_mode = 2
-
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("7_jkdf5")]
@@ -131,5 +95,7 @@ script = ExtResource("8_wsu2k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("WorldBoundaryShape2D_kek77")
+
+[node name="Music" parent="." instance=ExtResource("9_ynf5e")]
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

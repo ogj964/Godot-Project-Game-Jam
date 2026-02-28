@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh0qbtcdq2c7"]
+
+[ext_resource type="AudioStream" uid="uid://bwktrf4dddm46" path="res://Assets/inono777-game-8-bit-399898.mp3" id="1_3h6ak"]
+
+[node name="Music" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_3h6ak")
+volume_db = -14.312
+autoplay = true

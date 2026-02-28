@@ -1,13 +1,25 @@
 extends CharacterBody2D
 
-const SPEED: float = 300.0
-const JUMP_VELOCITY: float = -450.0
+const SPEED = 300
+const JUMP_VELOCITY = -450
+const DAMAGE = 25
 
-var isAttacking: bool = false
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+var health = 100
+var isAttacking = false
+var isDead = false
 
-func _physics_process(delta: float) -> void:
-	var direction_x: float = Input.get_axis("left", "right")
+@onready var sprite = $AnimatedSprite2D
+@onready var hitbox = $Hitbox
+
+func _ready():
+	hitbox.monitoring = false
+
+func _physics_process(delta):
+
+	if isDead:
+		return
+
+	var direction = Input.get_axis("left", "right")
 
 	# Gravity
 	if not is_on_floor():
@@ -17,31 +29,47 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Horizontal movement
-	velocity.x = direction_x * SPEED
+	velocity.x = direction * SPEED
 
-	# Flip sprite based on direction
-	if direction_x > 0:
-		animated_sprite.flip_h = false
-	elif direction_x < 0:
-		animated_sprite.flip_h = true
+	# Flip sprite
+	if direction > 0:
+		sprite.flip_h = false
+	elif direction < 0:
+		sprite.flip_h = true
 
 	# Attack
-	if Input.is_action_just_pressed("attack") and not isAttacking:
+	if Input.is_action_just_pressed("attack") and !isAttacking:
 		isAttacking = true
-		animated_sprite.play("attack")
-	
-	# Movement animations (only if not attacking)
-	elif not isAttacking:
-		if direction_x != 0:
-			animated_sprite.play("walk")
-		else:
-			animated_sprite.play("idle")
+		sprite.play("attack")
+		hitbox.monitoring = true
 
-	# Move the character
+	elif !isAttacking:
+		if direction != 0:
+			sprite.play("walk")
+		else:
+			sprite.play("idle")
+
 	move_and_slide()
 
-# Called when attack animation finishes
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if animated_sprite.animation == "attack":
+
+func take_damage(amount):
+	if isDead:
+		return
+
+	health -= amount
+	sprite.play("hurt")
+
+	if health <= 0:
+		die()
+
+
+func die():
+	isDead = true
+	velocity = Vector2.ZERO
+	sprite.play("death")
+
+
+func _on_animated_sprite_2d_animation_finished():
+	if sprite.animation == "attack":
 		isAttacking = false
+		hitbox.monitoring = false
